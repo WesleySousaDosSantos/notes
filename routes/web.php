@@ -18,11 +18,14 @@ Route::middleware([CheckIsNotLogger::class])->group(function() {
 Route::middleware([CheckIsLogged::class])->group(function(){
     Route::get('/', [MainController::class, 'index'])->name('home');
     Route::get('/newNote', [MainController::class, 'newNote'])->name('novo');
+    Route::post('/newNoteSubmit', [MainController::class, 'newNoteSubmit'])->name('newNoteSubmit');
 
     //editar nota
-    Route::get('/edit/{id}', [MainController::class, 'editNote'])->name('edit');
+    Route::get('/editNote/{id}', [MainController::class, 'editNote'])->name('edit');
+    Route::post('/editNoteSubmit', [MainController::class, 'editNoteSubmit'])->name('editNoteSubmit');
     //deletar nota
-    Route::get('/editNote/{id}', [MainController::class, 'deletNote'])->name('delete');
+    Route::get('/deletNote/{id}', [MainController::class, 'deletNote'])->name('delete');
+    Route::get('/deletNoteConfirm/{id}', [MainController::class, 'deletNoteConfirm'])->name('deleteConfirm');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('sair');
 });
